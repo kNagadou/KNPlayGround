@@ -1,2 +1,4 @@
 # kNagdou
-サンプルコードを試したり、Wikiをまとめたりする場所。一旦それだけ。
+サンプルコードを試したり、Wikiをまとめたり。
+
+## [Wiki](https://github.com/kNagadou/kNagadou/wiki)
