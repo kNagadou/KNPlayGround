@@ -1,1 +1,2 @@
-# KNSandBox
+# Swift News
+Swiftの練習
