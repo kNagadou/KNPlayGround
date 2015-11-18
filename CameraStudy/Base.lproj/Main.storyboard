@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XCM-pT-OB8">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--写真-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MyViewController" customModule="CameraStudy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="30G-hT-biP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myImageCell" id="ahf-Fj-bqv" customClass="ImageTableViewCell" customModule="CameraStudy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ahf-Fj-bqv" id="gZj-M6-Kmz">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v1N-fD-PwD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="v1N-fD-PwD" firstAttribute="leading" secondItem="gZj-M6-Kmz" secondAttribute="leading" id="QRv-ly-Oxx"/>
+                                                <constraint firstAttribute="trailing" secondItem="v1N-fD-PwD" secondAttribute="trailing" id="bDk-Pu-BOT"/>
+                                                <constraint firstItem="v1N-fD-PwD" firstAttribute="top" secondItem="gZj-M6-Kmz" secondAttribute="top" id="ljZ-sb-ayB"/>
+                                                <constraint firstAttribute="bottom" secondItem="v1N-fD-PwD" secondAttribute="bottom" id="twE-1r-7ZW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="myImageView" destination="v1N-fD-PwD" id="6wH-io-kAU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="30G-hT-biP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0Jd-8l-YIj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="30G-hT-biP" secondAttribute="bottom" id="Hdu-tR-kBT"/>
+                            <constraint firstItem="30G-hT-biP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Var-cY-wLm"/>
+                            <constraint firstAttribute="trailing" secondItem="30G-hT-biP" secondAttribute="trailing" id="WZt-Yv-57U"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="写真" id="2RN-Ob-Uhh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="b4p-Wv-qiM">
+                            <connections>
+                                <action selector="didTouchButton:" destination="BYZ-38-t0r" id="I7J-0f-VYi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="myTableView" destination="30G-hT-biP" id="vvk-ev-TwV"/>
+                        <segue destination="Rmv-SJ-5XU" kind="show" identifier="openImageSegue" id="EtY-eN-iLc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1090" y="267"/>
+        </scene>
+        <!--Detail Image View Controller-->
+        <scene sceneID="hHG-3t-3Ox">
+            <objects>
+                <viewController id="Rmv-SJ-5XU" customClass="DetailImageViewController" customModule="CameraStudy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="E1C-ND-X6Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="dZ8-wg-aem"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G20-bl-met">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mbl-Jz-tCp">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dZ8-wg-aem" firstAttribute="top" secondItem="Mbl-Jz-tCp" secondAttribute="bottom" id="1hP-CZ-Gva"/>
+                            <constraint firstItem="Mbl-Jz-tCp" firstAttribute="top" secondItem="E1C-ND-X6Q" secondAttribute="bottom" id="2Y0-fM-LfV"/>
+                            <constraint firstAttribute="trailing" secondItem="Mbl-Jz-tCp" secondAttribute="trailing" id="jTu-mz-FLW"/>
+                            <constraint firstItem="Mbl-Jz-tCp" firstAttribute="leading" secondItem="G20-bl-met" secondAttribute="leading" id="rKc-1G-gCN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailImageView" destination="Mbl-Jz-tCp" id="eJP-gp-8XG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DGo-3q-Qr3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1812" y="267"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kD8-15-WzW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XCM-pT-OB8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qm4-Qv-aVc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EUt-9g-k0M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O5e-PI-tNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278" y="267"/>
+        </scene>
+    </scenes>
+</document>
