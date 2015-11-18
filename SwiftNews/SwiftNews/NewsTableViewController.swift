@@ -12,18 +12,21 @@ class NewsTableViewController: UITableViewController {
     let NEWS_URL = "http://dev.classmethod.jp/category/iphone/feed/"
     let GOOGLE_FEED_API = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://dev.classmethod.jp/category/iphone/feed/&num=10"
     var entries = NSArray()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.getEntries()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func onRefreshButton(sender: AnyObject) {
+    
+    func getEntries() {
         let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: GOOGLE_FEED_API)!, completionHandler: { data, response, error in
             // http://qiita.com/koher/items/0c60b13ff0fe93220210
             let dict = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
@@ -31,7 +34,6 @@ class NewsTableViewController: UITableViewController {
                 if let feed = responseData["feed"] as? NSDictionary {
                     if let entries = feed["entries"] as? NSArray {
                         self.entries = entries
-                        print(entries)
                     }
                 }
             }
@@ -39,13 +41,25 @@ class NewsTableViewController: UITableViewController {
         task.resume()
     }
     
+    func reloadData() {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
+    }
+
+    @IBAction func onRefreshButton(sender: AnyObject) {
+        self.getEntries()
+        self.reloadData()
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5;
+        return self.entries.count;
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("news")! as UITableViewCell
-        cell.textLabel!.text = "Swift News"
+        let entry = self.entries[indexPath.row] as! NSDictionary
+        cell.textLabel!.text = entry["title"] as? String
         return cell
     }
 }
