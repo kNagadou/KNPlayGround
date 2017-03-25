@@ -1,4 +1,4 @@
 # kNagdou
-サンプルコードを試したり、Wikiをまとめたり。
+this is test
 
 ## [Wiki](https://github.com/kNagadou/kNagadou/wiki)
